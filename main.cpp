@@ -7,11 +7,8 @@
 #include <iostream>
 
 int main() {
-    // Create a Farmrun object.
-    Farmrun myFarmrun;
-
-    // Call the menu to start the program.
-    myFarmrun.menu();
+    farmrun* run = nullptr
+    myfarmrun.menu();
 
     return 0; // Exit the program.
 }

@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(FarmRun main.cpp
         farmrun.cpp
-        farmrun.h)
+        farmrun.h
+        fruittreerun.cpp
+        fruittreerun.h)

@@ -3,46 +3,34 @@
 // Header file for the Farmrun class
 //
 
+
 #ifndef FARMRUN_H
 #define FARMRUN_H
-
-#include <map>
+#include <iostream>
 #include <string>
+#include <map>
+#include <vector>
 
-// A class to track farm run progress in Old School RuneScape
-class Farmrun {
-public:
-    // Constructor: Initializes the farm run locations.
-    Farmrun();
 
-    // Destructor: Cleans up resources (if needed).
-    ~Farmrun();
+class farmrun {
+    public:
+    farmrun(); // Constructor
+    virtual ~farmrun(); // Destructor
 
-    // Displays the main menu and handles user input.
-    void menu();
-/*
-    // Marks a location as visited.
-    void markLocation(const std::string& location);
-*/
-   // int locationIndex
-    void markLocation(int locationIndex);
+    virtual void run()=0; //pure virtual function for specific farm run logic
 
-    // Suggests the next unvisited location to visit.
-    bool suggestLocation();
+    void menu(); // Menu
 
-    // Celebrates the completion of a farm run.
-    void celebrate();
+    bool getvalidnumber(int&); //validates numbers input
 
-    // Resets all locations to unvisited.
-    void resetFarmRun();
-    //View Total Farm runs function
-    void viewTotalFarmRuns();
 
-private:
-    // A map to track locations and whether they have been visited.
-    std::map<std::string, bool> locations;
-    int totalFarmRuns = 0;
-    bool runCompleted;
+protected:
+    std::string farmruntype;
+    int choice;
+    std::vector<std::string> completedlocations;
+
+    bool runcompleted; // used to determine if the user's run is over.
+
+
 };
-
-#endif // FARMRUN_H
+#endif
