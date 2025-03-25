@@ -1,48 +1,55 @@
-//
-// farmrun.h
-// Header file for the Farmrun class
-//
 
 #ifndef FARMRUN_H
 #define FARMRUN_H
 
-#include <map>
 #include <string>
+#include <vector>
 
-// A class to track farm run progress in Old School RuneScape
-class Farmrun {
+class RunType {
 public:
-    // Constructor: Initializes the farm run locations.
-    Farmrun();
-
-    // Destructor: Cleans up resources (if needed).
-    ~Farmrun();
-
-    // Displays the main menu and handles user input.
-    void menu();
-/*
-    // Marks a location as visited.
-    void markLocation(const std::string& location);
-*/
-   // int locationIndex
-    void markLocation(int locationIndex);
-
-    // Suggests the next unvisited location to visit.
-    bool suggestLocation();
-
-    // Celebrates the completion of a farm run.
-    void celebrate();
-
-    // Resets all locations to unvisited.
-    void resetFarmRun();
-    //View Total Farm runs function
-    void viewTotalFarmRuns();
-
-private:
-    // A map to track locations and whether they have been visited.
-    std::map<std::string, bool> locations;
-    int totalFarmRuns = 0;
-    bool runCompleted;
+    virtual void displayLocations() const = 0;
+    virtual void performRun() = 0;
+    virtual std::string getName() const = 0;
+    virtual ~RunType() {}
 };
 
-#endif // FARMRUN_H
+class HerbRun : public RunType {
+private:
+    std::vector<std::string> herbLocations;
+    std::vector<bool> visited;
+
+public:
+    HerbRun();
+    void displayLocations() const override;
+    void performRun() override;
+    std::string getName() const override;
+    void markLocationVisited();
+};
+
+class TreeRun : public RunType {
+private:
+    std::vector<std::string> treeLocations;
+    std::vector<bool> visited;
+
+public:
+    TreeRun();
+    void displayLocations() const override;
+    void performRun() override;
+    std::string getName() const override;
+    void markLocationVisited();
+};
+
+class FruitTreeRun : public RunType {
+private:
+    std::vector<std::string> fruitTreeLocations;
+    std::vector<bool> visited;
+
+public:
+    FruitTreeRun();
+    void displayLocations() const override;
+    void performRun() override;
+    std::string getName() const override;
+    void markLocationVisited();
+};
+
+#endif
